@@ -21,7 +21,7 @@ public enum ResponseEnum {
     TEL_NOT_EXIST("手机号不存在",1001),
     WRONG_PASSWORD("密码错误",1002),
     //2.系统模块(2000起)
-    TOKEN_IS_TIMEOUT("登陆超时", 200),
+    TOKEN_IS_TIMEOUT("登陆超时", 2000),
 
 
 

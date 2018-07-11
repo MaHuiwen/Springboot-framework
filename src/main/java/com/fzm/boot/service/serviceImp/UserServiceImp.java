@@ -82,11 +82,7 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean isTelExist(String userTel) {
         User list = userMapper.getByTel(userTel);
-        if(list != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return (list != null);
     }
 
     /**
@@ -112,7 +108,7 @@ public class UserServiceImp implements UserService {
             //密码正确，更新user_token中的token值
             UserToken userToken = new UserToken();
             userToken.setUserId(user.getId());
-            userToken.setToken(UUID.randomUUID().toString());
+            userToken.setToken(UUID.randomUUID().toString().replaceAll("-", ""));
             userToken.setModifyTime(System.currentTimeMillis());
             userTokenMapper.updateByUserId(userToken);
 

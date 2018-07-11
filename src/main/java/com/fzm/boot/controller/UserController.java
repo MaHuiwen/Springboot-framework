@@ -1,5 +1,6 @@
 package com.fzm.boot.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.fzm.boot.commons.bean.ResResult;
 import com.fzm.boot.commons.constant.ResponseEnum;
 import com.fzm.boot.commons.util.BeanCopyUtil;
@@ -13,12 +14,14 @@ import com.fzm.boot.model.vo.UserVo;
 import com.fzm.boot.service.UserService;
 import com.fzm.boot.service.serviceImp.UserServiceImp;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 用户Controller层，注册、登陆
@@ -31,19 +34,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/user")
 public class UserController {
 
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
     /**
      * 用户注册
      *
-     * @param
+     * @param registryDto
      * @return
      * @author fzm_mhw
      * @data 2018/6/20 16:22
      */
     @ApiOperation(value = "用户注册", notes = "")
     @ApiImplicitParam(name = "registryDto", value = "注册用户信息", required = true, dataType = "RegistryDto")
+    @ApiParam(name = "password" , value = "密码", hidden = true)
     @PostMapping(value = "/registry")
     public ResResult registry(@RequestBody RegistryDto registryDto) {
         String userTel = registryDto.getUserTel();
@@ -88,18 +94,23 @@ public class UserController {
      * 1.通过@ApiOperation注解来给API增加说明
      * 2.通过@ApiImplicitParams和@ApiImplicitParam注解来给参数增加说明
      *
-     * @param userDto
+     * @param userTel
      * @return ResResult
      * @author fzm_mhw
      * @data 2018/7/6 15:23
      */
     @ApiOperation(value = "获取用户详情", notes = "")
-    @ApiImplicitParam(name = "userDto", value = "用户详细实体user", required = true, dataType = "UserDto")
-    @PostMapping(value = "/info")
-    public ResResult getInfo(@RequestBody UserDto userDto) {
-        String userTel = userDto.getUserTel();
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", required = true, dataType = "String", paramType = "header"),
+            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String")
+    }
+    )
+    @PostMapping(value = "/info/{userTel}")
+    public ResResult getInfo(@PathVariable String userTel) {
+        log.info("/info/{userTel}接收参数：" + userTel);
         User user = userService.getByTel(userTel);
         UserVo userVo = (UserVo) BeanCopyUtil.beanCopy(user, UserVo.class);
+        log.info("/info/{userTel}返回参数：" + JSON.toJSONString(userVo));
         return ResResultUtil.success(userVo);
     }
 }

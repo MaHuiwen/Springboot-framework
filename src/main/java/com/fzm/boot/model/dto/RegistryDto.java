@@ -1,5 +1,8 @@
 package com.fzm.boot.model.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 注册传进的信息
  *
@@ -7,8 +10,11 @@ package com.fzm.boot.model.dto;
  * @Date 2018/6/20 16:06
  * @Version
  */
+@ApiModel(description = "注册信息")
 public class RegistryDto {
+    @ApiModelProperty(value = "手机号", name = "userTel")
     private String userTel;
+
 
     private String password;
 
