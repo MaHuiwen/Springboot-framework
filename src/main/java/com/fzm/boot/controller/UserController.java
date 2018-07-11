@@ -48,8 +48,7 @@ public class UserController {
      * @data 2018/6/20 16:22
      */
     @ApiOperation(value = "用户注册", notes = "")
-    @ApiImplicitParam(name = "registryDto", value = "注册用户信息", required = true, dataType = "RegistryDto")
-    @ApiParam(name = "password" , value = "密码", hidden = true)
+    @ApiImplicitParam(name = "registryDto", value = "注册用户信息", required = true, dataType = "RegistryDto", paramType = "body")
     @PostMapping(value = "/registry")
     public ResResult registry(@RequestBody RegistryDto registryDto) {
         String userTel = registryDto.getUserTel();
@@ -70,7 +69,7 @@ public class UserController {
      * @data 2018/6/22 15:34
      */
     @ApiOperation(value = "用户登陆", notes = "这是notes")
-    @ApiImplicitParam(name = "loginDto", value = "用户登陆信息", required = true, dataType = "LoginDto")
+    @ApiImplicitParam(name = "loginDto", value = "用户登陆信息", required = true, dataType = "LoginDto", paramType = "body")
     @PostMapping(value = "/login")
     public ResResult login(@RequestBody LoginDto loginDto) {
 
@@ -102,7 +101,7 @@ public class UserController {
     @ApiOperation(value = "获取用户详情", notes = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", required = true, dataType = "String", paramType = "header"),
-            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String")
+            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String", paramType = "path")
     }
     )
     @PostMapping(value = "/info/{userTel}")

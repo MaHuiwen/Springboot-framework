@@ -3,20 +3,10 @@ package com.fzm.boot.model.dto;
 import io.swagger.annotations.ApiModelProperty;
 
 public class LoginDto {
-    @ApiModelProperty
+
     private String userTel;
 
     private String password;
-
-    private String token;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     public String getUserTel() {
         return userTel;
