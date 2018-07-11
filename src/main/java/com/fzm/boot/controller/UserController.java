@@ -51,6 +51,7 @@ public class UserController {
     @ApiImplicitParam(name = "registryDto", value = "注册用户信息", required = true, dataType = "RegistryDto", paramType = "body")
     @PostMapping(value = "/registry")
     public ResResult registry(@RequestBody RegistryDto registryDto) {
+        log.info("/registry接收参数：" + JSON.toJSONString(registryDto));
         String userTel = registryDto.getUserTel();
         //true表示手机号已经存在，否则进行注册
         if(userService.isTelExist(userTel)) {
@@ -63,7 +64,7 @@ public class UserController {
     /**
      * 登陆。校验手机号和密码是否正确。如果正确，登陆成功，更改token值
      *
-     * @param loginDto 包括
+     * @param loginDto
      * @return
      * @author fzm_mhw
      * @data 2018/6/22 15:34
@@ -101,9 +102,8 @@ public class UserController {
     @ApiOperation(value = "获取用户详情", notes = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", required = true, dataType = "String", paramType = "header"),
-            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String", paramType = "path")
-    }
-    )
+            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String", paramType = "path"),
+    })
     @PostMapping(value = "/info/{userTel}")
     public ResResult getInfo(@PathVariable String userTel) {
         log.info("/info/{userTel}接收参数：" + userTel);
