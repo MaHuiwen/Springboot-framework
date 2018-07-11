@@ -19,7 +19,7 @@ public class HelloWorld {
 
     @RequestMapping(value = "/hello")
     public String hello() {
-        return "Hello World";
+        return "test";
     }
 
     @PostMapping(value = "/say")
