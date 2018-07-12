@@ -7,21 +7,17 @@ import com.fzm.boot.commons.util.BeanCopyUtil;
 import com.fzm.boot.commons.util.ResResultUtil;
 import com.fzm.boot.model.dto.LoginDto;
 import com.fzm.boot.model.dto.RegistryDto;
-import com.fzm.boot.model.dto.UserDto;
 import com.fzm.boot.model.po.User;
 import com.fzm.boot.model.vo.UserLoginVo;
 import com.fzm.boot.model.vo.UserVo;
 import com.fzm.boot.service.UserService;
-import com.fzm.boot.service.serviceImp.UserServiceImp;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 用户Controller层，注册、登陆
@@ -102,7 +98,7 @@ public class UserController {
     @ApiOperation(value = "获取用户详情", notes = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", required = true, dataType = "String", paramType = "header"),
-            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "userTel", value = "查询的手机号", required = true, dataType = "String", paramType = "path")
     })
     @PostMapping(value = "/info/{userTel}")
     public ResResult getInfo(@PathVariable String userTel) {
