@@ -53,6 +53,7 @@ public class FileUtil {
         int pointLocation = fileName.lastIndexOf(DOT);
         String suffixName = fileName.substring(pointLocation + 1);
         //文件上传后的路径
+        //TODO:SpringBoot内嵌tomcat，每次运行都会生成新的tomcat文件夹，路径要在配置文件中写死。
         String filePath = request.getSession().getServletContext().getRealPath(SLASH);
         logger.info("filePath : " + filePath);
 
