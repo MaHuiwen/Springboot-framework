@@ -1,6 +1,7 @@
 package com.fzm.boot.mapper;
 
 import com.alibaba.fastjson.JSON;
+import com.fzm.boot.commons.util.SnowFlakeUtil;
 import com.fzm.boot.model.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -46,6 +48,23 @@ public class UserMapperTest {
     }
 
     @Test
-    public void insert1() {
+    public void testInsertUserList() {
+        for(int j = 1; j <= 100 ; j++) {
+            List<User> list = new ArrayList<>();
+            for(int i = 1; i< 1000; i++) {
+                User user = new User();
+                user.setId(SnowFlakeUtil.Snow.nextId());
+                long modifyTime = (long) (System.currentTimeMillis()
+                        + Math.random() * 10000000000L);
+                user.setModifyTime(modifyTime);
+                user.setStatus(0);
+                if(modifyTime > System.currentTimeMillis() + 10000000000L/2) {
+                    user.setStatus(1);
+                }
+                list.add(user);
+            }
+            userMapper.insertUserList(list);
+        }
+
     }
 }

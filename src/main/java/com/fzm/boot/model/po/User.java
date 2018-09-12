@@ -1,4 +1,7 @@
 package com.fzm.boot.model.po;
+
+import java.io.Serializable;
+
 /**
  * 要加上创建时间时间和修改时间
  *
