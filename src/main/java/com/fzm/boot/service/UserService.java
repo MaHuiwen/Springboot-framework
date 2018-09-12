@@ -4,6 +4,7 @@ import com.fzm.boot.model.dto.LoginDto;
 import com.fzm.boot.model.dto.RegistryDto;
 import com.fzm.boot.model.po.User;
 import com.fzm.boot.model.vo.UserLoginVo;
+import org.quartz.JobExecutionException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -63,6 +64,15 @@ public interface UserService {
      * @author fzm_mhw
      * @data 2018/7/6 12:35
      */
-
     User getByTel(String tel);
+
+    /**
+     * 更新所用用户的时间
+     *
+     * @param
+     * @return
+     * @author fzm_mhw
+     * @date 2018/8/20 10:51
+     */
+    void updateTime() throws JobExecutionException;
 }

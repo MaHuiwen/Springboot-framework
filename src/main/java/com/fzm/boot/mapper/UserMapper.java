@@ -26,4 +26,24 @@ public interface UserMapper {
      * @data 2018/6/22 10:33
      */
     User getByTel(String userTel);
+
+    /**
+     * 定时任务：更新modify_time
+     *
+     * @param CurrentTime
+     * @return
+     * @author fzm_mhw
+     * @date 2018/8/20 11:14
+     */
+    void updateTime(Long CurrentTime);
+
+    /**
+     * 批量插入多条数据
+     *
+     * @param
+     * @return
+     * @author fzm_mhw
+     * @date 2018/8/23 14:42
+     */
+    void insertUserList(List<User> userList);
 }

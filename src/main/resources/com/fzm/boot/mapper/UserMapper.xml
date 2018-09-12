@@ -6,6 +6,8 @@
     <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="salt" jdbcType="VARCHAR" property="salt" />
+      <result column="modify_time" jdbcType="VARCHAR" property="modifyTime" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_user
@@ -30,7 +32,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, user_tel, password, salt
+    select id, user_tel, password, sys_user.salt
     from sys_user
   </select>
 
@@ -40,4 +42,23 @@
       from sys_user
       where user_tel = #{userTel,jdbcType=VARCHAR}
   </select>
+
+  <!--定时任务：更新modify_time-->
+  <update id="updateTime" parameterType="java.lang.Long">
+      update sys_user
+      set modify_time = #{modifyTime}
+  </update>
+
+  <!--插入多条数据-->
+    <insert id="insertUserList" parameterType="com.fzm.boot.model.po.User">
+        insert into sys_user
+        (id, modify_time, status)
+        values
+            <foreach collection="list" item="item" index="index" separator=",">
+                (
+                  #{item.id}, #{item.modifyTime}, #{item.status}
+                )
+            </foreach>
+
+    </insert>
 </mapper>

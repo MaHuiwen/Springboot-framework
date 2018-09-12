@@ -12,12 +12,14 @@ import com.fzm.boot.model.po.User;
 import com.fzm.boot.model.po.UserToken;
 import com.fzm.boot.model.vo.UserLoginVo;
 import com.fzm.boot.service.UserService;
+import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,7 +48,7 @@ public class UserServiceImp implements UserService {
      * @data 2018/6/22 11:41
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public int registry(RegistryDto registryDto) {
         //获取盐值并对密码进行MD5加密
         String salt = Md5Util.getSalt();
@@ -151,6 +153,23 @@ public class UserServiceImp implements UserService {
         }
 
         throw new ServiceException(ResponseEnum.TEL_NOT_EXIST_ERROR.getCode(), ResponseEnum.TEL_NOT_EXIST_ERROR.getMsg());
+    }
+
+    /**
+     * 定时任务：更新modify_time
+     *
+     * @param
+     * @return
+     * @author fzm_mhw
+     * @date 2018/8/20 10:50
+     */
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public void updateTime() throws JobExecutionException {
+        userMapper.updateTime(System.currentTimeMillis());
+        int i = 1 / 0 ;
+        JobExecutionException e = new JobExecutionException(new Exception());
+        throw e;
     }
 
 }
