@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fzm.boot.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.fzm.boot.model.po.User">
+<mapper namespace="com.mhw.boot.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.mhw.boot.model.po.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -13,13 +13,13 @@
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fzm.boot.model.po.User">
+  <insert id="insert" parameterType="com.mhw.boot.model.po.User">
     insert into sys_user (id, user_tel, password, 
       salt)
     values (#{id,jdbcType=BIGINT}, #{userTel,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{salt,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.fzm.boot.model.po.User">
+  <update id="updateByPrimaryKey" parameterType="com.mhw.boot.model.po.User">
     update sys_user
     set user_tel = #{userTel,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -50,7 +50,7 @@
   </update>
 
   <!--插入多条数据-->
-    <insert id="insertUserList" parameterType="com.fzm.boot.model.po.User">
+    <insert id="insertUserList" parameterType="com.mhw.boot.model.po.User">
         insert into sys_user
         (id, modify_time, status)
         values

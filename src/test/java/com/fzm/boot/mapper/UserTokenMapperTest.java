@@ -1,7 +1,7 @@
-package com.fzm.boot.mapper;
+package com.mhw.boot.mapper;
 
 import com.alibaba.fastjson.JSON;
-import com.fzm.boot.model.po.UserToken;
+import com.mhw.boot.model.po.UserToken;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

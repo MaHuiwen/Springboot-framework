@@ -33,7 +33,7 @@ spring:
 mybais:
 configuration:
   mapper-locations: classpath*:mapper/*.xml
-  typeAliasesPackage: com.fzm.boot.model.po.*
+  typeAliasesPackage: com.mhw.boot.model.po.*
   mapUnderscoreToCamelCase: true
 
 

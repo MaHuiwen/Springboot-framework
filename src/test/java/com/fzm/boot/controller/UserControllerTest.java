@@ -1,6 +1,6 @@
-package com.fzm.boot.controller;
+package com.mhw.boot.controller;
 
-import com.fzm.boot.model.dto.RegistryDto;
+import com.mhw.boot.model.dto.RegistryDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class UserControllerTest {
      *
      * @param
      * @return
-     * @author fzm_mhw
+     * @author mhw_mhw
      * @data 2018/6/22 13:55
      */
     @Test

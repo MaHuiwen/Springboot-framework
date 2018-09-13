@@ -1,8 +1,8 @@
-package com.fzm.boot.mapper;
+package com.mhw.boot.mapper;
 
 import com.alibaba.fastjson.JSON;
-import com.fzm.boot.commons.util.SnowFlakeUtil;
-import com.fzm.boot.model.po.User;
+import com.mhw.boot.commons.util.SnowFlakeUtil;
+import com.mhw.boot.model.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

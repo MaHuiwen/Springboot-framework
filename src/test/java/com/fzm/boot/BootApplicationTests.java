@@ -1,6 +1,6 @@
-package com.fzm.boot;
+package com.mhw.boot;
 
-import com.fzm.boot.commons.util.HttpRequestUtil;
+import com.mhw.boot.commons.util.HttpRequestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

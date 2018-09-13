@@ -1,11 +1,11 @@
-package com.fzm.boot.service.serviceImp;
+package com.mhw.boot.service.serviceImp;
 
 import com.alibaba.fastjson.JSON;
-import com.fzm.boot.model.dto.LoginDto;
-import com.fzm.boot.model.dto.RegistryDto;
-import com.fzm.boot.model.po.User;
-import com.fzm.boot.model.vo.UserLoginVo;
-import com.fzm.boot.service.UserService;
+import com.mhw.boot.model.dto.LoginDto;
+import com.mhw.boot.model.dto.RegistryDto;
+import com.mhw.boot.model.po.User;
+import com.mhw.boot.model.vo.UserLoginVo;
+import com.mhw.boot.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
